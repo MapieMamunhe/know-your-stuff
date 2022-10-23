@@ -1,9 +1,9 @@
 import "./App.css";
 import CardSelection from "./components/CardSelection";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
 function App() {
-  let percentage = 90;
   return (
     <>
       <Header />
@@ -14,14 +14,7 @@ function App() {
           Confirm
         </button>
       </div>
-      <div className="fixed bottom-0 w-screen bg-black">
-        <p
-          className={"bg-blue-700 text-white"}
-          style={{ width: `${percentage}%` }}
-        >
-          Progresso
-        </p>
-      </div>
+      <Footer />
     </>
   );
 }

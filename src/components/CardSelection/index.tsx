@@ -1,8 +1,8 @@
 import React from "react";
 import Card from "../Card";
-
+import { atom } from "jotai";
 // import { Container } from './styles';
-
+export const selectedCard = atom("card1");
 const CardSelection: React.FC = () => {
   return (
     <main className="flex justify-around flex-wrap">

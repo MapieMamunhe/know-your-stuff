@@ -1,10 +1,11 @@
 import "./App.css";
-import CardSelection from "./components/CardSelection";
+import CardSelection, { selectedCard } from "./components/CardSelection";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { atom } from "jotai";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,6 +17,7 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>

@@ -23,7 +23,7 @@ const Button: React.FC = () => {
     }
   };
   return (
-    <div className="flex justify-center my-4 ">
+    <div className="flex justify-center my-4">
       <button
         onClick={handleInfo}
         className="bg-green-600 hover:bg-blue-600 rounded-md w-20 h-10 text-center text-white"

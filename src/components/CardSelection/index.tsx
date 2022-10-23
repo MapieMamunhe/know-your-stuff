@@ -5,9 +5,13 @@ import Card from "../Card";
 
 const CardSelection: React.FC = () => {
   return (
-    <main className="flex justify-around">
-      <Card />
-      <Card />
+    <main className="flex justify-around flex-wrap">
+      <div>
+        <Card radioName={"card1"} />
+      </div>
+      <div>
+        <Card radioName={"card2"} />
+      </div>
     </main>
   );
 };

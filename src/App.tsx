@@ -3,9 +3,22 @@ import CardSelection from "./components/CardSelection";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Timer from "./components/Timer";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchInterval: false,
+      staleTime: Infinity,
+    },
+  },
+});
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Header />
       <Timer />
       <CardSelection />
@@ -15,7 +28,8 @@ function App() {
         </button>
       </div>
       <Footer />
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

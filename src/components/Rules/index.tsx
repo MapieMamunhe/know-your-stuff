@@ -1,8 +1,11 @@
+import { useAtom } from "jotai";
 import React, { useState } from "react";
+import { inforNumberAtom } from "../Button";
 
 // import { Container } from './styles';
 
 const Rules: React.FC = () => {
+  const [infoNumber] = useAtom(inforNumberAtom);
   const [rules, setRules] = useState([
     "Bem vindo",
     "Terá 60 segundos para adivinhar qual é a imagem certa",
@@ -10,7 +13,11 @@ const Rules: React.FC = () => {
     "A pontuação está no rodapé",
     "Se estiver preparado, clique em COMEÇAR!",
   ]);
-  return <div />;
+  return (
+    <p className="text-center font-semibold text-2xl px-20">
+      {rules[infoNumber]}
+    </p>
+  );
 };
 
 export default Rules;

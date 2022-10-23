@@ -5,7 +5,10 @@ import Header from "./components/Header";
 import Timer from "./components/Timer";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { atom } from "jotai";
+import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import AdditionalInfo from "./components/AdditionalInfo";
+import Button from "./components/Button";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,13 +25,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
-      <Timer />
+      <AdditionalInfo />
       <CardSelection />
-      <div className="flex justify-center my-4 ">
-        <button className="bg-green-600 hover:bg-blue-600 rounded-md w-20 h-10 text-center text-white">
-          Confirm
-        </button>
-      </div>
+      <Button />
       <Footer />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

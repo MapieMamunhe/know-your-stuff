@@ -1,7 +1,13 @@
 import React from "react";
 import { atom, useAtom } from "jotai";
 // import { Container } from './styles';
-export const scoreAtom = atom(0);
+const score = atom(0);
+export const scoreAtom = atom(
+  (get) => get(score),
+  (get, set, updateScore: number) => {
+    set(score, updateScore);
+  }
+);
 
 const Footer: React.FC = () => {
   const [score, setScore] = useAtom(scoreAtom);

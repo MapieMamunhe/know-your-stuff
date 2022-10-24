@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import React from "react";
-import { inforNumberAtom } from "../Button";
+import { infoNumberAtom } from "../Button";
 
 import Rules from "../Rules";
 import Timer from "../Timer";
@@ -8,7 +8,7 @@ import Timer from "../Timer";
 // import { Container } from './styles';
 
 const AdditionalInfo: React.FC = () => {
-  const [infoNumber] = useAtom(inforNumberAtom);
+  const [infoNumber] = useAtom(infoNumberAtom);
   return <>{infoNumber < 5 ? <Rules /> : <Timer />}</>;
 };
 

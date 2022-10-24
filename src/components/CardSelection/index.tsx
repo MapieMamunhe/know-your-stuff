@@ -1,10 +1,24 @@
-import React, { useEffect, useCallback } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import Card from "../Card";
-import { atom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { useQuery } from "react-query";
 import { Database } from "../../api/database";
+import { renderNewPlayerAtom, startGameAtom } from "../Button";
 // import { Container } from './styles';
-export const selectedCard = atom("card1");
+const selectCard = atom(1);
+export const selectedCardAtom = atom(
+  (get) => get(selectCard),
+  (get, set, update: number) => {
+    set(selectCard, update);
+  }
+);
+const rightAnswer = atom(1);
+export const rightAnswerAtom = atom(
+  (get) => get(rightAnswer),
+  (get, set, newAnswer: number) => {
+    set(rightAnswer, newAnswer);
+  }
+);
 export interface PlayerInterface {
   name: string;
   imageURL: string;
@@ -25,7 +39,7 @@ function parsedDataPlayersAPI(data: any): {
   const randomPageNumber = getRandomNumber(MAX_PAGES_IN_API, 0);
   const randomPlayerNumber = getRandomNumber(MAX_PLAYERS_IN_API, 0);
 
-  if (!data) {
+  if (typeof data === "undefined") {
     return { name: "", imageURL: "", playerID: 1 };
   }
 
@@ -56,21 +70,55 @@ function getTwoSetsOfPlayers(data: any): PlayerInterface[] {
 }
 const CardSelection: React.FC = () => {
   const { data, isLoading, isError } = useQuery("playersSet", () => Database);
-  if (isLoading) {
-    return <>Loading</>;
-  }
-  let players = getTwoSetsOfPlayers(data);
+  const [isToRenderNewPlayer, setIsToRenderNewPlayer] =
+    useAtom(renderNewPlayerAtom);
+  const [startGame] = useAtom(startGameAtom);
+  const [correctPlayerID, setCorrectPlayerID] = useAtom(rightAnswerAtom);
+  const [players, setPlayers] = useState(getTwoSetsOfPlayers(data));
+  let jsxToRender: JSX.Element = <>Loading</>;
+  useEffect(() => {
+    if (!startGame) return;
+    let newPlayers = getTwoSetsOfPlayers(data);
+    setCorrectPlayerID(newPlayers[1].playerID);
+    newPlayers =
+      getRandomNumber(1, 0) === 1
+        ? [
+            newPlayers[1],
+            {
+              name: newPlayers[1].name,
+              imageURL: newPlayers[0].imageURL,
+              playerID: newPlayers[0].playerID,
+            },
+          ]
+        : [
+            {
+              name: newPlayers[1].name,
+              imageURL: newPlayers[0].imageURL,
+              playerID: newPlayers[0].playerID,
+            },
+            newPlayers[1],
+          ];
+    setPlayers(() => newPlayers);
+    console.log(players, "Players no useEffect");
 
-  return (
-    <main className="flex justify-around flex-wrap">
-      <div>
-        <Card radioName={"card1"} playersData={players[0]} />
-      </div>
-      <div>
-        <Card radioName={"card2"} playersData={players[1]} />
-      </div>
-    </main>
-  );
+    console.log(players[1].playerID, "players id dentro");
+  }, [startGame]);
+  console.log(players, "Players fora do useEffect");
+
+  console.log(players[1].playerID, "players id fora");
+  if (!isLoading) {
+    jsxToRender = (
+      <main className="flex justify-around flex-wrap">
+        <div>
+          <Card radioName={"card1"} playersData={players[0]} />
+        </div>
+        <div>
+          <Card radioName={"card2"} playersData={players[1]} />
+        </div>
+      </main>
+    );
+  }
+  return jsxToRender;
 };
 
 export default CardSelection;

@@ -15,7 +15,6 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {" "}
               Sobre o Autor
             </a>
           </li>

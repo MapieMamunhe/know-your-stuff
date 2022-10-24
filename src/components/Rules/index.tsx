@@ -1,11 +1,11 @@
 import { useAtom } from "jotai";
 import React, { useState } from "react";
-import { inforNumberAtom } from "../Button";
+import { infoNumberAtom } from "../Button";
 
 // import { Container } from './styles';
 
 const Rules: React.FC = () => {
-  const [infoNumber] = useAtom(inforNumberAtom);
+  const [infoNumber] = useAtom(infoNumberAtom);
   const [rules, setRules] = useState([
     "Bem vindo",
     "Terá 60 segundos para adivinhar qual é a imagem certa",

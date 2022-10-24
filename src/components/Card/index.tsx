@@ -1,9 +1,9 @@
 import { useAtom } from "jotai";
 import React from "react";
 import { useQuery } from "react-query";
-import { PlayerInterface, selectedCard } from "../CardSelection";
+import { PlayerInterface, selectedCardAtom } from "../CardSelection";
 import { Database } from "../../api/database";
-import { starGameAtom } from "../Button";
+import { startGameAtom } from "../Button";
 // import { Container } from './styles';
 interface Props {
   radioName: string;
@@ -11,10 +11,11 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
-  const [card, setCard] = useAtom(selectedCard);
-  const [startGame, setStartGame] = useAtom(starGameAtom);
+  const [card, setCard] = useAtom(selectedCardAtom);
+  const [startGame, setStartGame] = useAtom(startGameAtom);
   const updateCardSelection = (): void => {
-    setCard(radioName);
+    console.log("Selected Card", playersData.playerID);
+    setCard(playersData.playerID);
   };
   const gamePlacement = () => {
     return (
@@ -32,14 +33,20 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
   };
   return (
     <>
-      <input type="radio" name="card" className="peer hidden" id={radioName} />
+      <input
+        type="radio"
+        name="card"
+        className="peer hidden"
+        id={radioName}
+        value={playersData.playerID}
+        onChange={updateCardSelection}
+      />
       <label
         htmlFor={radioName}
         className="flex flex-col mx-2 min-h-[200px] my-8
           min-w-[180px] text-center peer-checked:bg-blue-500
           justify-center rounded  shadow bg-gray-200 
           hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50"
-        onClick={updateCardSelection}
       >
         <figure>{startGame ? gamePlacement() : <>Aguardando</>}</figure>
       </label>

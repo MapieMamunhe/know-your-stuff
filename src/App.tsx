@@ -1,5 +1,5 @@
 import "./App.css";
-import CardSelection, { selectedCard } from "./components/CardSelection";
+import CardSelection, { selectedCardAtom } from "./components/CardSelection";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Timer from "./components/Timer";

@@ -13,22 +13,20 @@ import { page12 } from "./football/12.min.js";
 import { page13 } from "./football/13.min.js";
 import { page14 } from "./football/14.min.js";
 import { page15 } from "./football/15.min.js";
-export const Database = (): {}[] => {
-  return [
-    page1,
-    page2,
-    page3,
-    page4,
-    page5,
-    page6,
-    page7,
-    page8,
-    page9,
-    page10,
-    page11,
-    page12,
-    page13,
-    page14,
-    page15,
-  ];
-};
+export const Database = () => [
+  page1,
+  page2,
+  page3,
+  page4,
+  page5,
+  page6,
+  page7,
+  page8,
+  page9,
+  page10,
+  page11,
+  page12,
+  page13,
+  page14,
+  page15,
+];

@@ -2,9 +2,9 @@ import { atom, useAtom } from "jotai";
 import React, { useState } from "react";
 
 // import { Container } from './styles';
-
 const Button: React.FC = () => {
   const [infoNumber, setInfoNumber] = useAtom(inforNumberAtom);
+  const [starGame, setStartGame] = useAtom(starGameAtom);
   const handleInfo = () => {
     //Call functions bellow only if condition is meet to save state update time
     if (infoNumber <= 4) {
@@ -17,6 +17,7 @@ const Button: React.FC = () => {
   const handleTextButton = (): void => {
     if (infoNumber > 3) {
       setTextButton(() => "Confirmar");
+      setStartGame(() => true);
     }
     if (infoNumber === 3) {
       setTextButton(() => "Começar");
@@ -33,6 +34,7 @@ const Button: React.FC = () => {
     </div>
   );
 };
+export const starGameAtom = atom(false);
 
 export default Button;
 export const inforNumberAtom = atom<number>(0);

@@ -1,14 +1,18 @@
 import { atom, useAtom } from "jotai";
 import React, { useState } from "react";
 import { rightAnswerAtom, selectedCardAtom } from "../CardSelection";
+import { scoreAtom } from "../Footer";
 
 // import { Container } from './styles';
-
+const POINTS_FOR_ANSWER = 10;
 const Button: React.FC = () => {
   const [infoNumber, setInfoNumber] = useAtom(infoNumberAtom);
-  const [startGame, setStartGame] = useAtom(startGameAtom);
+  const [isToStartGame, setIsToStartGame] = useAtom(startGameAtom);
   const [rightAnswer] = useAtom(rightAnswerAtom);
   const [selectedCard] = useAtom(selectedCardAtom);
+  const [isToRenderNewPlayer, setIsToRenderNewPlayer] =
+    useAtom(renderNewPlayerAtom);
+  const [score, setScore] = useAtom(scoreAtom);
   const handleInfo = (): void => {
     //Call functions bellow only if condition is meet to save state update time
     if (infoNumber <= 4) {
@@ -16,19 +20,20 @@ const Button: React.FC = () => {
       handleTextButton();
     }
   };
-  const handleAnswer = (): boolean => {
+  const handleAnswer = (): void => {
     console.log("HandleAnswer", rightAnswer, selectedCard);
     if (rightAnswer === selectedCard) {
-      console.log("Acertou");
+      setScore(POINTS_FOR_ANSWER);
     }
-    return false;
+    setIsToRenderNewPlayer(true);
   };
   const handleInfoNumber = (): void => setInfoNumber(infoNumber + 1);
   const [textButton, setTextButton] = useState("Continuar");
   const handleTextButton = (): void => {
     if (infoNumber > 3) {
       setTextButton(() => "Confirmar");
-      setStartGame(true);
+      setIsToStartGame(true);
+      setIsToRenderNewPlayer(true);
     }
     if (infoNumber === 3) {
       setTextButton(() => "Começar");
@@ -40,7 +45,7 @@ const Button: React.FC = () => {
   return (
     <div className="flex justify-center my-4">
       <button
-        onClick={startGame ? handleAnswer : handleInfo}
+        onClick={isToStartGame ? handleAnswer : handleInfo}
         className="bg-green-600 hover:bg-blue-600 rounded-md w-20 h-10 text-center text-white"
       >
         {textButton}

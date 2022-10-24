@@ -4,6 +4,7 @@ import { atom, useAtom } from "jotai";
 import { useQuery } from "react-query";
 import { Database } from "../../api/database";
 import { renderNewPlayerAtom, startGameAtom } from "../Button";
+import { scoreAtom } from "../Footer";
 // import { Container } from './styles';
 const selectCard = atom(1);
 export const selectedCardAtom = atom(
@@ -75,9 +76,12 @@ const CardSelection: React.FC = () => {
   const [startGame] = useAtom(startGameAtom);
   const [correctPlayerID, setCorrectPlayerID] = useAtom(rightAnswerAtom);
   const [players, setPlayers] = useState(getTwoSetsOfPlayers(data));
+
   let jsxToRender: JSX.Element = <>Loading</>;
   useEffect(() => {
+    //Dont bother run code bellow if its not to start the game
     if (!startGame) return;
+    if (!isToRenderNewPlayer) return;
     let newPlayers = getTwoSetsOfPlayers(data);
     setCorrectPlayerID(newPlayers[1].playerID);
     newPlayers =
@@ -99,13 +103,8 @@ const CardSelection: React.FC = () => {
             newPlayers[1],
           ];
     setPlayers(() => newPlayers);
-    console.log(players, "Players no useEffect");
-
-    console.log(players[1].playerID, "players id dentro");
-  }, [startGame]);
-  console.log(players, "Players fora do useEffect");
-
-  console.log(players[1].playerID, "players id fora");
+    setIsToRenderNewPlayer(false);
+  }, [startGame, isToRenderNewPlayer]);
   if (!isLoading) {
     jsxToRender = (
       <main className="flex justify-around flex-wrap">

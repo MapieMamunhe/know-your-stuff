@@ -13,7 +13,10 @@ const Footer: React.FC = () => {
   const [score, setScore] = useAtom(scoreAtom);
   return (
     <div className="fixed bottom-0 w-screen max-h-[10vh] h-10 bg-black">
-      <p className={"bg-blue-700 text-white"} style={{ width: `${score}%` }}>
+      <p
+        className={"bg-blue-700 text-white h-[100%] text-center"}
+        style={{ width: `${score}%` }}
+      >
         Progresso
       </p>
     </div>

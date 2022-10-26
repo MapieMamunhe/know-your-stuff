@@ -25,7 +25,7 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
           src={playersData.imageURL}
           alt={playersData.name}
         />
-        <figcaption className="text-center max-w-[180px]">
+        <figcaption className="text-center max-w-[180px] h-[48px] block align-middle justify-center">
           {playersData.name}
         </figcaption>
       </>
@@ -43,7 +43,7 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
       />
       <label
         htmlFor={radioName}
-        className="flex flex-col mx-2 min-h-[200px] my-8
+        className="flex flex-col mx-2 min-h-[220px] my-12
           min-w-[180px] text-center peer-checked:bg-blue-500
           justify-center rounded  shadow bg-gray-200 
           hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50"

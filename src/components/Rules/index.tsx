@@ -14,7 +14,7 @@ const Rules: React.FC = () => {
     "Se estiver preparado, clique em COMEÇAR!",
   ]);
   return (
-    <p className="animate-bounce text-center font-semibold text-2xl px-20">
+    <p className="animate-bounce text-center font-semibold text-2xl sm:px-20">
       {rules[infoNumber]}
     </p>
   );

@@ -22,7 +22,7 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
     return (
       <>
         <img
-          className="min-w-[180px]"
+          className="min-w-full"
           src={playersData.imageURL}
           alt={playersData.name}
           loading="lazy"
@@ -45,8 +45,8 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
       />
       <label
         htmlFor={radioName}
-        className={`flex flex-col mx-2 min-h-[220px] my-12
-          min-w-[180px] text-center peer-checked:bg-blue-500
+        className={`flex flex-col flex-wrap mx-2 w-[120px] min-h-[220px] my-12
+          sm:min-w-[180px] text-center peer-checked:bg-blue-500
           justify-center rounded  shadow bg-gray-200 drop-shadow-lg
           hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50 ring ring-offset-4 ring-green-400`}
       >

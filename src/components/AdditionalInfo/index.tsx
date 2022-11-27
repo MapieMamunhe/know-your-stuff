@@ -9,7 +9,9 @@ import Timer from "../Timer";
 
 const AdditionalInfo: React.FC = () => {
   const [infoNumber] = useAtom(infoNumberAtom);
-  return <div className="h-20">{infoNumber < 5 ? <Rules /> : <Timer />}</div>;
+  return (
+    <div className="sm:h-20">{infoNumber < 5 ? <Rules /> : <Timer />}</div>
+  );
 };
 
 export default AdditionalInfo;

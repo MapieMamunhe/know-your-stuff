@@ -108,10 +108,10 @@ const CardSelection: React.FC = () => {
   if (!isLoading) {
     jsxToRender = (
       <main className="flex justify-around flex-wrap">
-        <div>
+        <div className="flex flex-wrap">
           <Card radioName={"card1"} playersData={players[0]} />
         </div>
-        <div>
+        <div className="flex flex-wrap">
           <Card radioName={"card2"} playersData={players[1]} />
         </div>
       </main>

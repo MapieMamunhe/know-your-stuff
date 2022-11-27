@@ -36,7 +36,7 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
         name="card"
         className="peer hidden"
         id={radioName}
-        value={card}
+        value={playersData.playerID}
         onChange={(e) => {
           e.currentTarget.value = playersData.playerID + "";
           setCard(playersData.playerID);

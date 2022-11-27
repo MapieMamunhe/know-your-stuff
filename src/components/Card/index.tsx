@@ -14,9 +14,6 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
   const [card, setCard] = useAtom(selectedCardAtom);
   const [startGame, setStartGame] = useAtom(startGameAtom);
   const specialClass = "bg-green-400";
-  const updateCardSelection = (): void => {
-    setCard(playersData.playerID);
-  };
   const gamePlacement = () => {
     return (
       <>
@@ -39,8 +36,11 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
         name="card"
         className="peer hidden"
         id={radioName}
-        value={playersData.playerID}
-        onChange={updateCardSelection}
+        value={card}
+        onChange={(e) => {
+          e.currentTarget.value = playersData.playerID + "";
+          setCard(playersData.playerID);
+        }}
       />
       <label
         htmlFor={radioName}

@@ -6,10 +6,10 @@ import { Database } from "../../api/database";
 import { renderNewPlayerAtom, startGameAtom } from "../Button";
 import { scoreAtom } from "../Footer";
 // import { Container } from './styles';
-const selectCard = atom<number | null>(null);
+const selectCard = atom<number | string>("");
 export const selectedCardAtom = atom(
   (get) => get(selectCard),
-  (get, set, update: number | null) => {
+  (get, set, update: number | string) => {
     set(selectCard, update);
   }
 );

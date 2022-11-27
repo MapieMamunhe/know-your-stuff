@@ -15,7 +15,6 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
   const [startGame, setStartGame] = useAtom(startGameAtom);
   const specialClass = "bg-green-400";
   const updateCardSelection = (): void => {
-    console.log("Selected Card", playersData.playerID);
     setCard(playersData.playerID);
   };
   const gamePlacement = () => {

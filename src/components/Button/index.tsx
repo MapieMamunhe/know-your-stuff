@@ -21,7 +21,6 @@ const Button: React.FC = () => {
     }
   };
   const handleAnswer = (): void => {
-    console.log("HandleAnswer", rightAnswer, selectedCard);
     if (rightAnswer === selectedCard) {
       setScore(POINTS_FOR_ANSWER);
     }

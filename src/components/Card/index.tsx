@@ -13,6 +13,7 @@ interface Props {
 const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
   const [card, setCard] = useAtom(selectedCardAtom);
   const [startGame, setStartGame] = useAtom(startGameAtom);
+  const specialClass = "bg-green-400";
   const updateCardSelection = (): void => {
     console.log("Selected Card", playersData.playerID);
     setCard(playersData.playerID);
@@ -24,6 +25,7 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
           className="min-w-[180px]"
           src={playersData.imageURL}
           alt={playersData.name}
+          loading="lazy"
         />
         <figcaption className="text-center max-w-[180px] h-[48px] block align-middle justify-center">
           {playersData.name}
@@ -43,10 +45,10 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
       />
       <label
         htmlFor={radioName}
-        className="flex flex-col mx-2 min-h-[220px] my-12
+        className={`flex flex-col mx-2 min-h-[220px] my-12
           min-w-[180px] text-center peer-checked:bg-blue-500
-          justify-center rounded  shadow bg-gray-200 
-          hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50"
+          justify-center rounded  shadow bg-gray-200 drop-shadow-lg
+          hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50 ring ring-offset-4 ring-green-400`}
       >
         <figure>{startGame ? gamePlacement() : <>Aguardando</>}</figure>
       </label>

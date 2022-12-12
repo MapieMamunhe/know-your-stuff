@@ -2,6 +2,11 @@ import { atom, useAtom } from "jotai";
 import React, { useState } from "react";
 import { rightAnswerAtom, selectedCardAtom } from "../CardSelection";
 import { scoreAtom } from "../Footer";
+import {
+  openNotificationInfo,
+  openNotificationSucess,
+  openNotificationFail,
+} from "../Notification";
 
 // import { Container } from './styles';
 const POINTS_FOR_ANSWER = 10;
@@ -9,7 +14,7 @@ const Button: React.FC = () => {
   const [infoNumber, setInfoNumber] = useAtom(infoNumberAtom);
   const [isToStartGame, setIsToStartGame] = useAtom(startGameAtom);
   const [rightAnswer] = useAtom(rightAnswerAtom);
-  const [selectedCard] = useAtom(selectedCardAtom);
+  const [selectedCard, setSelectedCard] = useAtom(selectedCardAtom);
   const [isToRenderNewPlayer, setIsToRenderNewPlayer] =
     useAtom(renderNewPlayerAtom);
   const [score, setScore] = useAtom(scoreAtom);
@@ -21,10 +26,19 @@ const Button: React.FC = () => {
     }
   };
   const handleAnswer = (): void => {
+    //TODO: Tratar selected card caso nao esteja selecionado
+    if (selectedCard === "") {
+      openNotificationInfo("bottomRight", "Escolha uma das opções!");
+      return;
+    }
     if (rightAnswer === selectedCard) {
       setScore(POINTS_FOR_ANSWER);
+      openNotificationSucess("topRight", "Respota correcta +10 pontos");
+    } else {
+      openNotificationFail("topRight", "Errou..");
     }
     setIsToRenderNewPlayer(true);
+    setSelectedCard("");
   };
   const handleInfoNumber = (): void => setInfoNumber(infoNumber + 1);
   const [textButton, setTextButton] = useState("Continuar");

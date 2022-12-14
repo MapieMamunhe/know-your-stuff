@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { PlayerInterface, selectedCardAtom } from "../CardSelection";
 import { Database } from "../../api/database";
@@ -12,8 +12,14 @@ interface Props {
 
 const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
   const [card, setCard] = useAtom(selectedCardAtom);
+  const [isChecked, setChecked] = useState(false);
   const [startGame, setStartGame] = useAtom(startGameAtom);
   const specialClass = "bg-green-400";
+  const isRadioSelected = (value: number) => card === value;
+  /* const handleCheck = () => {
+    console.log(card + " Esse e o card");
+    //If its the current card then..
+  }; */
   const gamePlacement = () => {
     return (
       <>
@@ -36,10 +42,11 @@ const Card: React.FC<Props> = ({ radioName, playersData }: Props) => {
         name="card"
         className="peer hidden"
         id={radioName}
+        checked={isRadioSelected(playersData.playerID)}
         value={playersData.playerID}
         onChange={(e) => {
-          e.currentTarget.value = playersData.playerID + "";
-          setCard(playersData.playerID);
+          console.log(e.currentTarget.value);
+          setCard(Number(e.currentTarget.value));
         }}
       />
       <label

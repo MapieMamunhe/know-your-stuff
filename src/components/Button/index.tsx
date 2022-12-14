@@ -27,7 +27,7 @@ const Button: React.FC = () => {
   };
   const handleAnswer = (): void => {
     //TODO: Tratar selected card caso nao esteja selecionado
-    if (selectedCard === "") {
+    if (selectedCard === -1) {
       openNotificationInfo("bottomRight", "Escolha uma das opções!");
       return;
     }
@@ -38,7 +38,7 @@ const Button: React.FC = () => {
       openNotificationFail("topRight", "Errou..");
     }
     setIsToRenderNewPlayer(true);
-    setSelectedCard("");
+    setSelectedCard(-1);
   };
   const handleInfoNumber = (): void => setInfoNumber(infoNumber + 1);
   const [textButton, setTextButton] = useState("Continuar");

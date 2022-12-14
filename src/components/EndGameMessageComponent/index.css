@@ -1,0 +1,50 @@
+.shareLinks {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100vw;
+}
+.shareLinks > span {
+  margin-right: 15px;
+}
+#shareLinks > h2 {
+  font-size: var(--fs-1);
+  font-weight: var(--fw);
+}
+#shareLinks a {
+  font-size: var(--fs-1);
+}
+#shareLinks,
+.msgComponentClass {
+  text-align: center;
+  display: grid;
+  place-items: center;
+}
+.msgComponentClass {
+  font-family: var(--ff);
+  font-size: var(--fs-1);
+  font-weight: var(--fw);
+  height: 177px;
+  animation-name: winnerAnimation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes winnerAnimation {
+  /* 0% {background-color: var(--accent);font-size: 1.5em};
+    25% {background-color: var(--accent); font-size: 1.7em}; */
+  50% {
+    color: var(--accent);
+    font-size: 1.75em;
+  }
+  75% {
+    color: var(--accent);
+    font-size: 1.85em;
+  }
+  100% {
+    color: var(--accent);
+    font-size: 2.25em;
+  }
+}

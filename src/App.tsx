@@ -5,7 +5,9 @@ import Header from "./components/Header";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import AdditionalInfo from "./components/AdditionalInfo";
-import Button from "./components/Button";
+import Button, { gameOverAtom } from "./components/Button";
+import { useAtom } from "jotai";
+import EndGameMessageComponent from "./components/EndGameMessageComponent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,11 +21,19 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const [gameOver] = useAtom(gameOverAtom);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
-      <AdditionalInfo />
-      <CardSelection />
+      {gameOver ? (
+        <EndGameMessageComponent message={"Fim"} />
+      ) : (
+        <>
+          <AdditionalInfo />
+          <CardSelection />
+        </>
+      )}
       <Button />
       <Footer />
       <ReactQueryDevtools initialIsOpen={false} />

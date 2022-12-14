@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
-import React from "react";
-import { infoNumberAtom } from "../Button";
+import React, { useState } from "react";
+import { gameOverAtom, infoNumberAtom } from "../Button";
+import EndGameMessageComponent from "../EndGameMessageComponent";
 
 import Rules from "../Rules";
 import Timer from "../Timer";
@@ -9,9 +10,12 @@ import Timer from "../Timer";
 
 const AdditionalInfo: React.FC = () => {
   const [infoNumber] = useAtom(infoNumberAtom);
-  return (
-    <div className="sm:h-20">{infoNumber < 5 ? <Rules /> : <Timer />}</div>
-  );
+
+  let componentToRender = <Rules />;
+  if (infoNumber >= 5) {
+    componentToRender = <Timer />;
+  }
+  return <div className="sm:h-20">{componentToRender}</div>;
 };
 
 export default AdditionalInfo;

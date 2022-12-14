@@ -1,6 +1,6 @@
 import "./App.css";
 import CardSelection from "./components/CardSelection";
-import Footer from "./components/Footer";
+import Footer, { scoreAtom } from "./components/Footer";
 import Header from "./components/Header";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -22,12 +22,16 @@ const queryClient = new QueryClient({
 
 function App() {
   const [gameOver] = useAtom(gameOverAtom);
-
+  const [score] = useAtom(scoreAtom);
+  let message = `Sua pontuação ${score} tente novamente e consiga 100%`;
+  if (score >= 100) {
+    message = "Parabéns! Seu conhecimento é inigualável!";
+  }
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
       {gameOver ? (
-        <EndGameMessageComponent message={"Fim"} />
+        <EndGameMessageComponent message={message} />
       ) : (
         <>
           <AdditionalInfo />

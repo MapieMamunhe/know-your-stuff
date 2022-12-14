@@ -28,23 +28,20 @@
   font-weight: var(--fw);
   height: 177px;
   animation-name: winnerAnimation;
-  animation-duration: 2.5s;
+  animation-duration: 0.75s;
   animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes winnerAnimation {
   /* 0% {background-color: var(--accent);font-size: 1.5em};
     25% {background-color: var(--accent); font-size: 1.7em}; */
-  50% {
+  from {
     color: var(--accent);
-    font-size: 1.75em;
+    font-size: 1.2em;
   }
-  75% {
+  to {
     color: var(--accent);
-    font-size: 1.85em;
-  }
-  100% {
-    color: var(--accent);
-    font-size: 2.25em;
+    font-size: 1.275em;
   }
 }

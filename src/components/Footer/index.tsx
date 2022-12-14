@@ -17,7 +17,14 @@ const Footer: React.FC = () => {
         className={"bg-blue-700 text-white h-[100%] text-center"}
         style={{ width: `${score}%` }}
       >
-        Progresso
+        <span
+          style={{
+            textAlign: "center",
+            position: "absolute",
+          }}
+        >
+          Progresso {score}%
+        </span>
       </p>
     </div>
   );

@@ -17,6 +17,7 @@ const Button: React.FC = () => {
   const [selectedCard, setSelectedCard] = useAtom(selectedCardAtom);
   const [isToRenderNewPlayer, setIsToRenderNewPlayer] =
     useAtom(renderNewPlayerAtom);
+  const [gameOver, setGameOver] = useAtom(gameOverAtom);
   const [score, setScore] = useAtom(scoreAtom);
   const handleInfo = (): void => {
     //Call functions bellow only if condition is meet to save state update time
@@ -34,6 +35,9 @@ const Button: React.FC = () => {
     if (rightAnswer === selectedCard) {
       setScore(POINTS_FOR_ANSWER);
       openNotificationSucess("topRight", "Respota correcta +10 pontos");
+      if (score === 100) {
+        setGameOver(true);
+      }
     } else {
       openNotificationFail("topRight", "Errou..");
     }
@@ -88,5 +92,11 @@ export const renderNewPlayerAtom = atom(
     set(renderNewPlayer, newPlayerUpdate);
   }
 );
-
+const gameOver = atom(false);
+export const gameOverAtom = atom(
+  (get) => get(gameOver),
+  (get, set, gameOverUpdate: boolean) => {
+    set(gameOver, gameOverUpdate);
+  }
+);
 export default Button;

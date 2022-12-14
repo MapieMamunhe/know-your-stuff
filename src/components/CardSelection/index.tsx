@@ -3,7 +3,7 @@ import Card from "../Card";
 import { atom, useAtom } from "jotai";
 import { useQuery } from "react-query";
 import { Database } from "../../api/database";
-import { renderNewPlayerAtom, startGameAtom } from "../Button";
+import { renderNewPlayerAtom, startGameAtom } from "../AnswerButton";
 import { scoreAtom } from "../Footer";
 // import { Container } from './styles';
 const selectCard = atom<number>(-1);

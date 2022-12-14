@@ -10,7 +10,7 @@ import {
 
 // import { Container } from './styles';
 const POINTS_FOR_ANSWER = 10;
-const Button: React.FC = () => {
+const AnswerButton: React.FC = () => {
   const [infoNumber, setInfoNumber] = useAtom(infoNumberAtom);
   const [isToStartGame, setIsToStartGame] = useAtom(startGameAtom);
   const [rightAnswer] = useAtom(rightAnswerAtom);
@@ -33,7 +33,7 @@ const Button: React.FC = () => {
       return;
     }
     if (rightAnswer === selectedCard) {
-      setScore(POINTS_FOR_ANSWER);
+      setScore(POINTS_FOR_ANSWER + score);
       openNotificationSucess("topRight", "Respota correcta +10 pontos");
       if (score === 100) {
         setGameOver(true);
@@ -59,10 +59,26 @@ const Button: React.FC = () => {
   const verifyCard = (): boolean => {
     return false;
   };
+  const handleStart = () => {
+    console.log(gameOver, " Acabou o jogo");
+    if (gameOver) {
+      setIsToStartGame(true);
+
+      setIsToRenderNewPlayer(true);
+
+      return;
+    }
+    if (isToStartGame) {
+      handleAnswer();
+      return;
+    } else {
+      handleInfo();
+    }
+  };
   return (
     <div className="flex justify-center my-4">
       <button
-        onClick={isToStartGame ? handleAnswer : handleInfo}
+        onClick={handleStart}
         className="bg-green-600 hover:bg-blue-600 rounded-md w-20 h-10 text-center text-white"
       >
         {textButton}
@@ -99,4 +115,4 @@ export const gameOverAtom = atom(
     set(gameOver, gameOverUpdate);
   }
 );
-export default Button;
+export default AnswerButton;

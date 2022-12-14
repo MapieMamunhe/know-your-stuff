@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { PlayerInterface, selectedCardAtom } from "../CardSelection";
 import { Database } from "../../api/database";
-import { startGameAtom } from "../Button";
+import { startGameAtom } from "../AnswerButton";
 // import { Container } from './styles';
 interface Props {
   radioName: string;

@@ -5,7 +5,7 @@ const score = atom(0);
 export const scoreAtom = atom(
   (get) => get(score),
   (get, set, updateScore: number) => {
-    set(score, get(score) + updateScore);
+    set(score, updateScore);
   }
 );
 

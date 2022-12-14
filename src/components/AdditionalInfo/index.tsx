@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import React, { useState } from "react";
-import { gameOverAtom, infoNumberAtom } from "../Button";
+import { gameOverAtom, infoNumberAtom } from "../AnswerButton";
 import EndGameMessageComponent from "../EndGameMessageComponent";
 
 import Rules from "../Rules";

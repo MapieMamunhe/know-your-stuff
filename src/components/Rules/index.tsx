@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import React, { useState } from "react";
-import { infoNumberAtom } from "../Button";
+import { infoNumberAtom } from "../AnswerButton";
 
 // import { Container } from './styles';
 

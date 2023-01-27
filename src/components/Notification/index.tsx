@@ -5,7 +5,7 @@ import {
   RadiusUprightOutlined,
 } from "@ant-design/icons";
 import { notification } from "antd";
-import type { NotificationPlacement } from "antd/es/notification/interface";
+import { NotificationPlacement } from "antd/lib/notification";
 export const openNotificationSucess = (
   placement: NotificationPlacement,
   desc: string

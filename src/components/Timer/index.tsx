@@ -15,7 +15,7 @@ const Timer: React.FC = () => {
   }
   return <p className="text-center font-semibold text-2xl">{timer}</p>;
 };
-const timer = atom(10);
+const timer = atom(60);
 export const timerAtom = atom(
   (get) => get(timer),
   (get, set, timerUpdate: number) => {
